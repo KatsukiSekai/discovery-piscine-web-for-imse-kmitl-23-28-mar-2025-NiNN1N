@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+
+    <h1>Simple Calculator</h1>
+    
+    <input type="text" id="left" placeholder="Enter left number">
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="text" id="right" placeholder="Enter right number">
+    <input type="submit" value="Try me!" id="calculate">
+
+    <script>
+        $(document).ready(function() {
+            function calculate() {
+                let left = $("#left").val().trim();
+                let right = $("#right").val().trim();
+                let operator = $("#operator").val();
+
+                
+                if (!/^\d+$/.test(left) || !/^\d+$/.test(right)) {
+                    alert("Error :(");
+                    return;
+                }
+
+                left = parseInt(left);
+                right = parseInt(right);
+                let result;
+
+                
+                if ((operator === "/" || operator === "%") && right === 0) {
+                    alert("It's over 9000!");
+                    console.log("It's over 9000!");
+                    return;
+                }
+
+                
+                switch (operator) {
+                    case "+": result = left + right; break;
+                    case "-": result = left - right; break;
+                    case "*": result = left * right; break;
+                    case "/": result = left / right; break;
+                    case "%": result = left % right; break;
+                }
+
+                
+                alert(result);
+                console.log(result);
+            }
+
+            
+            $("#calculate").click(calculate);
+
+            
+            setInterval(() => {
+                alert("Please, use me...");
+            }, 30000);
+        });
+    </script>
+
+</body>
+</html>
